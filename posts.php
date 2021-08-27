@@ -20,3 +20,15 @@
  * dosyasını döngü içinde dahil etmeli ve her yazı için detayları göstermelisiniz.
  */
 
+include_once "functions.php"; //included this file only one time to use its functionalities
+
+$randomPostCount = getRandomPostCount(10, 20); //a random value returned by the function was assigned to our variable
+$allRandomPosts = getLatestPosts($randomPostCount); //we used this variable to get random number of posts
+// as a result we got an array which holds title, type and id attributes of the posts.
+
+foreach($allRandomPosts as $key => $value){ 
+    echo $key."---> Title: ".$value["title"]." | Type: ".$value["type"]."<br>";  //showed necessary details for every post
+    include "post.php";  //this code script is included more than once into posts.php file
+}
+?>
+
