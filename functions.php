@@ -15,11 +15,18 @@
  * istiyoruz. Ek olarak, `getRandomPostCount` isminde bir fonksiyon tanımlamanızı
  * bekliyoruz. Bununla ilgili detaylı bilgi diğer betiklerde yer alıyor.
  */
+// $_SERVER['PHP_SELF'] -->  Returns the filename of the currently executing script
+// basename(__FILE__) -->  returns the basename of the file whose path has been given as a parameter by the user
+
+if(basename($_SERVER['PHP_SELF']) == basename(__FILE__)){ 
+    
+    exit("Direct access is not allowed to!"); // we printed out a warning message that this script code could not be executed directly.
+}
 
 function getLatestPosts($count = 5)
 {
     $posts = [];
-    $postTypes = ["urgent", "warning", "normal"];
+    $postTypes = ["urgent", "warning", "normal", "blue"]; //added one post type whose name is blue
 
     for($i=1; $i<=$count; $i++) {
         do {
@@ -36,16 +43,32 @@ function getLatestPosts($count = 5)
 
     return $posts;
 }
-
-function getPostDetails($id, $title)
-{
+function getPostDetails($id, $title){
     echo "<h1>".$title." (#".$id.")</h1>";
-    echo <<<EOT
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a iaculis justo, ac molestie justo. Integer semper nibh non imperdiet blandit. Integer nec diam eget sapien viverra rutrum ut eu justo. Suspendisse efficitur pretium eleifend. Vivamus ex nibh, euismod eget massa ut, accumsan ullamcorper nisi. Phasellus tristique magna et nibh dictum rhoncus. Phasellus at metus quis mi egestas blandit. Vestibulum lacinia ut tortor nec consectetur. Nulla sed risus ut est imperdiet vulputate ac non quam. Aliquam viverra erat vitae diam commodo, et molestie metus ultricies. Praesent rutrum urna a nisi egestas aliquam sit amet eu eros.
-</p>
-EOT;
+    echo<<< EOT
+    <p>
+    <strong>Yapay zeka</strong>, karşılaşılan durumlar/gözlemler/olaylar karşısında insanlara benzer hatta daha rasyonel tepkiler/çıktılar/kararlar verebilen bilgi işleme mekanizmasıdır.
+    Bilgi işlemeyi gerçekleştirebilecek işlemci ve hafıza taşıyan, bilgi işlemeye girdi sağlayabilecek kanalları (sensör, kamera, mikrofon vs.) olan her cihaz yapay zeka sahibi olabilir.
+    </p>
+    <h2>Makineler Neyi Öğrenir?</h2> 
+    <p> Herşeyden önce ilk bilmemiz gereken nokta şu: 
+    makineler ancak sayılarla ifade edilen kavramları anlayabilirler. 
+    Bahsettiğimiz kavramlar soyut da olsa, somut da olsa; ancak sayılara dökülebildiği anda makinelerin anlayabileceği bir hale geliyor. 
+    Kafanız karışmasın. Diyebilirsiniz ki “Google Çeviri yazılı cümleleri bir dilden bir başkasına çeviriyor, 
+    <em>Amazon Alexa</em> konuşmamızı anlayıp bize yardımcı olabiliyor. Sonuçta ortada sayı falan yok.” 
+    İşin aslı, Google Translate’i ya da Amazon Alexa’yı kullanırken hissetmesek de arka planda kelimeler ve sesler sayılara çevriliyor. 
+    Kelimeleri ve sesleri sayılara nasıl döktüğümüz konusuna burada girmeyeceğiz. 
+    Fakat bilin ki bunun birçok yolu var ve bu konu aktif bir araştırma konusu olmaya devam ediyor.
+    </p>
+    EOT;
 }
+
 
 // Aşağıya fonksiyonu tanımlayabilirsiniz.
 
+//this function generates a random number between two given numbers and returns it
+function getRandomPostCount($min, $max){ 
+    $randomNumber = rand($min, $max);
+    return $random_number;
+}
+?>
