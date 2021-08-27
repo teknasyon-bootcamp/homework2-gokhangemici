@@ -68,7 +68,7 @@ function getPostDetails($id, $title){
 
 //this function generates a random number between two given numbers and returns it
 function getRandomPostCount($min, $max){ 
-    $randomNumber = rand($min, $max);
-    return $random_number;
+    return rand($min, $max);
+    
 }
 ?>
